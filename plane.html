@@ -32,7 +32,7 @@
         const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide })
         // Mesh = Geometry + Material
         const plane = new THREE.Mesh(geometry, material)
-        scene.add(plane);
+
         plane.rotation.set(1.6, 0, 0)
 
         // Geometry + Material = Mesh
@@ -49,11 +49,16 @@
         cube2.position.set(-2, 0, -2)
         cube3.position.set(-2, 0, 2)
         cube4.position.set(2, 0, -2)
+
+        const g1 = new THREE.Group()
+        g1.add(plane, cube1, cube2, cube3, cube4)
+        scene.add(g1)
         // ADD mesh in the scene
-        scene.add(cube1)
-        scene.add(cube2)
-        scene.add(cube3)
-        scene.add(cube4)
+        // scene.add(cube1)
+        // scene.add(cube2)
+        // // scene.add(cube3)
+        // // scene.add(cube4)
+        // scene.add(plane);
 
         // Renderer
         let renderer = new THREE.WebGLRenderer({ antialias: true }) // Corrected typo in 'antialias'
@@ -66,6 +71,7 @@
 
         function animate() {
             // plane.rotation.x += 0.01
+            g1.rotation.y += 0.01
 
             requestAnimationFrame(animate)
             renderer.render(scene, camera)
