@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Js learning</title>
+</head>
+
+<body>
+    <div id="container"></div>
+
+    <script type="module">
+        import * as THREE from "./three.module.js"
+        //SCENE
+        let scene = new THREE.Scene();
+
+        //CAMERA
+        let width = window.innerWidth // width of the browser window
+        let height = window.innerHeight
+        let viewAngle = 45 // view angle for camera
+        let nearClipping = 0.1 // near view point of camera
+        let farClipping = 9999 // far view point of camera
+
+        let camera = new THREE.PerspectiveCamera(viewAngle, width / height, nearClipping, farClipping)
+        camera.position.set(0, 0, 10)
+
+        // Geometry + Material = Mesh
+        // PlaneGeometry >> Plane
+        const geometry = new THREE.PlaneGeometry(5, 5)
+        // <eshBasicMaterial >> Material for PLANE
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide })
+        // Mesh = Geometry + Material
+        const plane = new THREE.Mesh(geometry, material)
+        scene.add(plane);
+        plane.rotation.set(1.6, 0, 0)
+
+        // Geometry + Material = Mesh
+        // BOXGEOMETRY >> CUBE
+        let cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+        // // MeshBasicMaterial >> Material for the cube
+        let cubeMaterial = new THREE.MeshBasicMaterial({ color: "red" })
+        // // Mesh = Geometry + Material
+        let cube1 = new THREE.Mesh(cubeGeometry, cubeMaterial)
+        let cube2 = new THREE.Mesh(cubeGeometry, cubeMaterial)
+        let cube3 = new THREE.Mesh(cubeGeometry, cubeMaterial)
+        let cube4 = new THREE.Mesh(cubeGeometry, cubeMaterial)
+        cube1.position.set(2, 0, 2)
+        cube2.position.set(-2, 0, -2)
+        cube3.position.set(-2, 0, 2)
+        cube4.position.set(2, 0, -2)
+        // ADD mesh in the scene
+        scene.add(cube1)
+        scene.add(cube2)
+        scene.add(cube3)
+        scene.add(cube4)
+
+        // Renderer
+        let renderer = new THREE.WebGLRenderer({ antialias: true }) // Corrected typo in 'antialias'
+        renderer.setSize(width, height)
+
+        // JS to get elements
+        let element = document.getElementById('container') // Corrected selector
+        // JS to append domElement into our HTML
+        element.appendChild(renderer.domElement)
+
+        function animate() {
+            // plane.rotation.x += 0.01
+
+            requestAnimationFrame(animate)
+            renderer.render(scene, camera)
+        }
+        animate();
+
+    </script>
+</body>
+
+</html>
