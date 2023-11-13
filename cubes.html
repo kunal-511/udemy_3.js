@@ -24,7 +24,7 @@
         let farClipping = 9999 // far view point of perspectivecamera 
 
         let camera = new THREE.PerspectiveCamera(viewAngle, width / height, nearClipping, farClipping)
-        camera.position.set(0, 0, 10)
+        camera.position.set(1, 2, 10)
 
         // Geometry + Material = Mesh
         // BOXGEOMETRY >> CUBE
@@ -37,10 +37,14 @@
         // ADD mesh in the scene
         scene.add(cube)
 
-        const geometry = new THREE.CapsuleGeometry(2, 4)  //capsulegeometry(radius, length)
-        const material = new THREE.MeshBasicMaterial({ color: "green" })
-        const capsule = new THREE.Mesh(geometry, material)
-        scene.add(capsule)
+        // Axes Helper
+        const axesHelper = new THREE.AxesHelper()
+        scene.add(axesHelper)
+
+        // const geometry = new THREE.CapsuleGeometry(2, 4)  //capsulegeometry(radius, length)
+        // const material = new THREE.MeshBasicMaterial({ color: "green" })
+        // const capsule = new THREE.Mesh(geometry, material)
+        // scene.add(capsule)
 
         // Renderer
         let renderer = new THREE.WebGLRenderer({ antialias: true }) // Corrected typo in 'antialias'
@@ -53,8 +57,8 @@
         element.appendChild(renderer.domElement)
 
         function animate() {
-            capsule.rotation.y += 0.01;
-            capsule.rotation.x += 0.01;
+            // capsule.rotation.y += 0.01;
+            // capsule.rotation.x += 0.01;
             cube.rotation.y += 0.01;
             cube.rotation.x += 0.01;
             // capsule.rotation.z += 0.01;
