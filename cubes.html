@@ -20,8 +20,8 @@
         let width = window.innerWidth // width of the browser window
         let height = window.innerHeight
         let viewAngle = 45 // view angle for camera
-        let nearClipping = 0.1 // near view point of camera
-        let farClipping = 9999 // far view point of camera
+        let nearClipping = 0.1 // near view point of perspectivecamera
+        let farClipping = 9999 // far view point of perspectivecamera 
 
         let camera = new THREE.PerspectiveCamera(viewAngle, width / height, nearClipping, farClipping)
         camera.position.set(0, 0, 10)
