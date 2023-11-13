@@ -24,7 +24,7 @@
         let farClipping = 9999 // far view point of perspectivecamera 
 
         let camera = new THREE.PerspectiveCamera(viewAngle, width / height, nearClipping, farClipping)
-        camera.position.set(1, 2, 10)
+        camera.position.set(0, 0, 10)
 
         // Geometry + Material = Mesh
         // BOXGEOMETRY >> CUBE
@@ -37,7 +37,12 @@
         // ADD mesh in the scene
         scene.add(cube)
 
-        // Axes Helper
+        // Scale property 
+        // cube.scale.x = 2
+        // cube.scale.x = 1
+        // cube.scale.x = 0.5
+        cube.scale.set(1, 1, 1) // to set all the x,y,z property at same time
+        // Axes Helper - it helps to place a 3d axis which will help to locate position coordinates
         const axesHelper = new THREE.AxesHelper()
         scene.add(axesHelper)
 
