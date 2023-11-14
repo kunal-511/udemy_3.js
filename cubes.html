@@ -56,6 +56,7 @@
         //         A boolean property that determines whether the renderer should use antialiasing to smooth out the edges of rendered objects, providing a more polished and less jagged appearance.
         renderer.setSize(width, height)
 
+        const clock = new THREE.Clock()
         // JS to get elements
         let element = document.getElementById('container') // Corrected selector
         // JS to append domElement into our HTML
@@ -64,9 +65,13 @@
         function animate() {
             // capsule.rotation.y += 0.01;
             // capsule.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-            cube.rotation.x += 0.01;
+            // cube.rotation.y += 0.01;
+            // cube.rotation.x += 0.01;
             // capsule.rotation.z += 0.01;
+            const elapsedTime = clock.getElapsedTime()
+            console.log(elapsedTime)
+            // cube.rotation.y = elapsedTime
+            cube.position.y = Math.sin(elapsedTime)
 
             requestAnimationFrame(animate)
             renderer.render(scene, camera) // checkout lookAt function in 3.JS
