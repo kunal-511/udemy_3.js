@@ -22,18 +22,19 @@
         //CAMERA
         let width = window.innerWidth // width of the browser window
         let height = window.innerHeight
-        let viewAngle = 45 // view angle for camera
+        let viewAngle = 75 // view angle for camera
         let nearClipping = 0.1 // near view point of perspectivecamera
         let farClipping = 9999 // far view point of perspectivecamera 
+        // Do not use 0.00001 or 99999 values to prevent z-fighting 
 
         let camera = new THREE.PerspectiveCamera(viewAngle, width / height, nearClipping, farClipping)
         camera.position.set(0, 0, 10)
 
         // Geometry + Material = Mesh
         // BOXGEOMETRY >> CUBE
-        let cubeGeometry = new THREE.BoxGeometry(2, 2, 2)
+        let cubeGeometry = new THREE.BoxGeometry(4, 4, 4)
         // // MeshBasicMaterial >> Material for the cube
-        let cubeMaterial = new THREE.MeshBasicMaterial({ color: "red" })
+        let cubeMaterial = new THREE.MeshBasicMaterial({ color: "pink" })
         // // Mesh = Geometry + Material
         let cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
         cube.position.set(5, 0, 0)
@@ -71,8 +72,8 @@
         function animate() {
             // capsule.rotation.y += 0.01;
             // capsule.rotation.x += 0.01;
-            // cube.rotation.y += 0.01;
-            // cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            cube.rotation.x += 0.01;
             // capsule.rotation.z += 0.01;
             const elapsedTime = clock.getElapsedTime()
             console.log(elapsedTime)
