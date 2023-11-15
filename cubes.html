@@ -65,6 +65,9 @@
         // JS to append domElement into our HTML
         element.appendChild(renderer.domElement)
 
+        gsap.to(cube.position, { duration: 1, delay: 1, x: 2 })
+        gsap.to(cube.position, { duration: 1, delay: 4, x: 0 })
+
         function animate() {
             // capsule.rotation.y += 0.01;
             // capsule.rotation.x += 0.01;
@@ -74,7 +77,7 @@
             const elapsedTime = clock.getElapsedTime()
             console.log(elapsedTime)
             // cube.rotation.y = elapsedTime
-            cube.position.y = Math.sin(elapsedTime)
+            // cube.position.y = Math.sin(elapsedTime)
 
             requestAnimationFrame(animate)
             renderer.render(scene, camera) // checkout lookAt function in 3.JS
