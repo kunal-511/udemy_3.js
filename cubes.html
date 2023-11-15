@@ -16,8 +16,27 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module">
         import * as THREE from "./three.module.js"
+        // Sizes
+        const sizes = {
+            width: 800,
+            height: 600
+        }
         //SCENE
         let scene = new THREE.Scene();
+
+
+
+        // Cursor 
+        const cursor = {
+            x: 0, y: 0
+        }
+        window.addEventListener('mousemove', (event) => {
+            cursor.x = event.clientX / sizes.width - 0.5
+            cursor.y = -(event.clientY / sizes.height - 0.5)
+            console.log(cursor.x)
+            console.log(cursor.y)
+            console.log('object')
+        })
 
         //CAMERA
         let width = window.innerWidth // width of the browser window
@@ -37,7 +56,7 @@
         let cubeMaterial = new THREE.MeshBasicMaterial({ color: "pink" })
         // // Mesh = Geometry + Material
         let cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
-        cube.position.set(5, 0, 0)
+        cube.position.set(0, 0, 0)
         // ADD mesh in the scene
         scene.add(cube)
 
@@ -45,7 +64,7 @@
         // cube.scale.x = 2
         // cube.scale.x = 1
         // cube.scale.x = 0.5
-        cube.scale.set(1, 1, 1) // to set all the x,y,z property at same time
+        // cube.scale.set(1, 1, 1) // to set all the x,y,z property at same time
         // Axes Helper - it helps to place a 3d axis which will help to locate position coordinates
         const axesHelper = new THREE.AxesHelper()
         scene.add(axesHelper)
@@ -54,6 +73,7 @@
         // const material = new THREE.MeshBasicMaterial({ color: "green" })
         // const capsule = new THREE.Mesh(geometry, material)
         // scene.add(capsule)
+
 
         // Renderer
         let renderer = new THREE.WebGLRenderer({ antialias: true }) // Corrected typo in 'antialias'
@@ -66,19 +86,23 @@
         // JS to append domElement into our HTML
         element.appendChild(renderer.domElement)
 
-        gsap.to(cube.position, { duration: 1, delay: 1, x: 2 })
-        gsap.to(cube.position, { duration: 1, delay: 4, x: 0 })
+        // gsap.to(cube.position, { duration: 1, delay: 1, x: 2 })
+        // gsap.to(cube.position, { duration: 1, delay: 4, x: 0 })
 
         function animate() {
             // capsule.rotation.y += 0.01;
             // capsule.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-            cube.rotation.x += 0.01;
+            // cube.rotation.y += 0.01;
+            // cube.rotation.x += 0.01;
             // capsule.rotation.z += 0.01;
             const elapsedTime = clock.getElapsedTime()
-            console.log(elapsedTime)
+            //   console.log(elapsedTime)
             // cube.rotation.y = elapsedTime
             // cube.position.y = Math.sin(elapsedTime)
+
+            // Update Camera
+            camera.position.x = cursor.x * 3
+            camera.position.y = cursor.y * 3
 
             requestAnimationFrame(animate)
             renderer.render(scene, camera) // checkout lookAt function in 3.JS
