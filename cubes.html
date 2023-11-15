@@ -51,7 +51,7 @@
 
         // Geometry + Material = Mesh
         // BOXGEOMETRY >> CUBE
-        let cubeGeometry = new THREE.BoxGeometry(4, 4, 4)
+        let cubeGeometry = new THREE.BoxGeometry(2, 2, 2)
         // // MeshBasicMaterial >> Material for the cube
         let cubeMaterial = new THREE.MeshBasicMaterial({ color: "pink" })
         // // Mesh = Geometry + Material
@@ -101,9 +101,13 @@
             // cube.position.y = Math.sin(elapsedTime)
 
             // Update Camera
-            camera.position.x = cursor.x * 10
-            camera.position.y = cursor.y * 10
-            camera.lookAt(new THREE.Vector3)
+            //  camera.position.x = cursor.x * 10
+            // camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3
+            // camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3
+            // camera.position.y = cursor.y * 5
+            // // camera.position.y = cursor.y * 10
+            // // camera.lookAt(new THREE.Vector3) 
+            // camera.lookAt(cube.position) // same as above 
 
             requestAnimationFrame(animate)
             renderer.render(scene, camera) // checkout lookAt function in 3.JS
